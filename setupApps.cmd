@@ -7,4 +7,6 @@
 FOR %%G IN (chocolatey, zoom, 7zip, Audacity, firefox, gimp, handbrake, inkscape, krita, libreoffice, adobereader, tux-paint, vlc, googlechrome ) DO (choco upgrade %%G -fy)
 
 MsiExec.exe /i 	c:\novabench.msi /qn
+del /Q  %public%\desktop\*
+xcopy /E /Y ".\folders\*"  %public%\desktop\
 @pause 
