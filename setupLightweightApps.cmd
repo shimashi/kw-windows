@@ -10,7 +10,7 @@ FOR %%G IN (chocolatey, zoom, firefox,  libreoffice-fresh, adobereader, vlc, goo
 MsiExec.exe /i 	c:\novabench.msi /qn
 cd %mypath%
 del /Q  %public%\desktop\*
-xcopy /E /Y ".\folders\*"  %public%\desktop\
+xcopy /E /Y ".\LightweightFolders\*"  %public%\desktop\
 
 mkdir c:\kindworks
 @powershell -NoProfile -ExecutionPolicy Bypass -Command "powercfg /batteryreport /output 'C:\kindworks\battery-report.html'"
