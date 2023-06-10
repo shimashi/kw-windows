@@ -15,4 +15,9 @@ xcopy /E /Y ".\folders\*"  %public%\desktop\
 mkdir c:\kindworks
 @powershell -NoProfile -ExecutionPolicy Bypass -Command "powercfg /batteryreport /output 'C:\kindworks\battery-report.html'"
 systeminfo > "c:\kindworks\system_info.txt"
+
+:: Remove One Drive
+TASKKILL /f /im OneDrive.exe
+%systemroot%\SysWOW64\OneDriveSetup.exe /uninstall
+
 @pause 
