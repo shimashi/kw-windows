@@ -5,7 +5,9 @@ SET mypath=%~dp0
 :: Install choco and add choco to path
 @powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
 :: Install packages
-FOR %%G IN (chocolatey,  zoom, 7zip, Audacity, firefox, gimp, handbrake, inkscape, krita,  libreoffice-fresh, adobereader, tux-paint, vlc, googlechrome ) DO (choco upgrade %%G -y)
+FOR %%G IN (chocolatey,  zoom, 7zip, Audacity, firefox, gimp, handbrake, inkscape, krita,  libreoffice-fresh, adobereader, tux-paint, vlc ) DO (choco upgrade %%G -y)
+
+choco upgrade googlechrome -y --ignore-checksums
 
 MsiExec.exe /i 	c:\novabench.msi /qn
 cd %mypath%
