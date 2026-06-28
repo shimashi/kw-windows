@@ -60,7 +60,7 @@ Write-host -f Green "`n Chocolately upgrade completed"
 
 ## Define an array of the applications you want to install
 
-$applications=@("7zip", "adobereader", "AvastFreeAntivirus", "Audacity", "firefox", "gimp", "googlechrome", "handbrake", "inkscape", "krita", "libreoffice-fresh", "tux-paint", "vlc", "zoom")
+$applications=@("7zip", "adobereader", "AvastFreeAntivirus", "Audacity", "firefox", "gimp", "handbrake", "inkscape", "krita", "libreoffice-fresh", "tux-paint", "vlc", "zoom")
 
 
 
