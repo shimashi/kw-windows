@@ -7,7 +7,29 @@ REM Otherwise it will display every single line in the terminal which will not l
 
 Echo BEGIN THE BOOTUP BYPASS SCRIPT
 Echo.
-Echo This script allows unsigned powershell scripts to be run
+
+
+Echo Check to see if the C:\KindworksScripts folder exists, and if not, create it
+Echo.
+if not exist "C:\KindworksScripts" (
+    mkdir "C:\KindworksScripts"
+)
+
+
+Echo Check to see if the PowerShellScriptsAdam folder exists on the Desktop, and if so, move all files over to C:\KindworksScripts
+Echo.
+set "DesktopFolder=%USERPROFILE%\Desktop\PowerShellScriptsAdam"
+if exist "%DesktopFolder%" (
+    copy "%DesktopFolder%\*" "C:\KindworksScripts" >nul 2>&1
+)
+
+REM Pop up the KindworksScripts window to the user, if necessary
+REM explorer "C:\KindworksScripts"
+
+endlocal
+
+
+Echo Allow unsigned powershell scripts to be run
 Echo.
 Echo The upcoming command temporarily changes the execution policy to "bypass" for the "C:\KindWorksScripts\Initialize Script.ps1" file to run this unsigned PowerShell script
 Echo.
