@@ -6,6 +6,19 @@
 
 clear
 
+
+##  Temporary testing code Adam is revamping some of these scripts 6-28-2026
+$tempchoice = Read-Host "Press N to cancel now if you want"
+
+If($tempchoice -eq 'N' -or %tempchoice -eq 'n') {
+Write-Host "'n Ending this script"
+exit
+}
+
+Write-Host "'n Continuing script"
+
+
+
 ##  Center the powershell window in the middle of the screen.
 ##  This is necessary so the PowerShell window will fit 
 Add-Type -AssemblyName System.Windows.Forms
