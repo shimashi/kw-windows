@@ -279,6 +279,25 @@ else
 }
 
 
+## Erase the original downloaded GitHub files off the desktop if they exist
+
+$GithubfolderPath = "C:\Users\User\Desktop\PowerShellScriptsAdam"
+$GithubfilePath   = "C:\Users\User\Desktop\InstallScripts.zip"
+
+
+# Remove folder if it exists
+if (Test-Path $GithubfolderPath) {
+    Write-Host -ForegroundColor White "`n Deleting the PowerShellScriptsAdam folder off the Desktop"
+    Remove-Item $GithubfolderPath -Recurse -Force
+}
+
+# Remove file if it exists
+if (Test-Path $GithubfilePath) {
+    Write-Host -ForegroundColor White "`n Deleting the InstallScripts.zip file off the Desktop"
+    Remove-Item $GithubfilePath -Force
+}
+
+
 
 ## Create folders on the Desktop with shortcuts to specific applications.  The folder names organize the shortcuts by application category
 
