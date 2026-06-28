@@ -179,7 +179,7 @@ else
 
 $applications=@("7zip", "adobereader", "AvastFreeAntivirus", "Audacity", "firefox", "gimp", "handbrake", "inkscape", "krita", "libreoffice-fresh", "tux-paint", "vlc", "zoom")
 
-## Removing "googlechrome",  from the above list of apps to install because it doesn't work with Chocolatey as of 11/2/2025
+## Removing "googlechrome",  from the above list of apps to install because it doesn't work with Chocolatey as of 6/28/2026
 
 ## Go through each application and install it with Chocolatey
 
@@ -395,14 +395,15 @@ $Shortcut.IconLocation = ",0"
 $Shortcut.WindowStyle = 1
 $Shortcut.Save()
 
+## Removing the Google Chrome shortcut because Chocolatey can't seem to auto-install it as of 6/28/2026
 # Shortcut: Google Chrome
-$Shortcut = $WshShell.CreateShortcut("$ShortcutFolder\Google Chrome.lnk")
-$Shortcut.TargetPath = "C:\Program Files\Google\Chrome\Application\chrome.exe"
-$Shortcut.WorkingDirectory = "C:\Program Files\Google\Chrome\Application"
-$Shortcut.IconLocation = "C:\Program Files\Google\Chrome\Application\chrome.exe,0"
-$Shortcut.Description = "Access the Internet"
-$Shortcut.WindowStyle = 1
-$Shortcut.Save()
+# $Shortcut = $WshShell.CreateShortcut("$ShortcutFolder\Google Chrome.lnk")
+# $Shortcut.TargetPath = "C:\Program Files\Google\Chrome\Application\chrome.exe"
+# $Shortcut.WorkingDirectory = "C:\Program Files\Google\Chrome\Application"
+# $Shortcut.IconLocation = "C:\Program Files\Google\Chrome\Application\chrome.exe,0"
+# $Shortcut.Description = "Access the Internet"
+# $Shortcut.WindowStyle = 1
+# $Shortcut.Save()
 
 # Shortcut: Microsoft Edge
 $Shortcut = $WshShell.CreateShortcut("$ShortcutFolder\Microsoft Edge.lnk")
