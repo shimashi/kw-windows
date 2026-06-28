@@ -1,12 +1,16 @@
 @echo off
 setlocal
 
+REM Note that as of 6/28/2026, this script is not needed.  It was only useful if a refurbisher prefers to copy the PowerShell installation scripts to a thumb drive first, and then insert the thumbdrive into the computer to be refurbished.  This will properly copy the files off the thumbdrive and onto the computer in the correct location, whch is C:\KindWorksScripts.  I think this version of the sript no longer accounts for the USB thumb drive anymore.  That code might be in an older version of the code.
+
+REM in the future, the latest PowerShell installation scripts can easily be downloaded directly from Github using the instructions outlined in the beginnign of the instructional Word document in this respository.
+
 Echo.
 Echo Begin Initial File Copy Script
 Echo.
 
 REM This script creates a folder called "C:\KindWorksScripts" and then downloads all necessary files onto the computer to be refurbished to prepare it to run the initialization scripts.
-REM This script downloads the necessary install scripts from the https://github.com/shimashi/kw-windows/ github site
+
 REM Run this script first, after the refurbished computer has had a fresh OS installed.  Internet connectivity is necessary for this script
 REM This script must be saved in UTF-8 mode, not "UTF-8 wth BOM"
 REM When you save the file in notepad, make sure the "Encoding" option at the bottom of the "Save As" menu has UTF-8 selected
