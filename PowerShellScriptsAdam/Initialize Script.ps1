@@ -177,9 +177,10 @@ else
 
 ## Define an array of the applications you want to install
 
-$applications=@("7zip", "adobereader", "AvastFreeAntivirus", "Audacity", "firefox", "gimp", "handbrake", "inkscape", "krita", "libreoffice-fresh", "tux-paint", "vlc", "zoom")
+$applications=@("7zip", "adobereader", "Audacity", "firefox", "gimp", "handbrake", "inkscape", "krita", "libreoffice-fresh", "tux-paint", "vlc", "zoom")
 
 ## Removing "googlechrome",  from the above list of apps to install because it doesn't work with Chocolatey as of 6/28/2026
+## Removing  "AvastFreeAntivirus", from the above list of apps to install because it causes too many problems as of 7/4/2026
 
 ## Go through each application and install it with Chocolatey
 
