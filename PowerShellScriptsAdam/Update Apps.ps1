@@ -60,7 +60,7 @@ Write-host -f Green "`n Chocolately upgrade completed"
 
 ## Define an array of the applications you want to install
 
-$applications=@("7zip", "adobereader", "AvastFreeAntivirus", "Audacity", "firefox", "gimp", "handbrake", "inkscape", "krita", "libreoffice-fresh", "tux-paint", "vlc", "zoom")
+$applications=@("7zip", "adobereader", "Audacity", "firefox", "gimp", "handbrake", "inkscape", "krita", "libreoffice-fresh", "tux-paint", "vlc", "zoom")
 
 
 
@@ -72,32 +72,6 @@ foreach ($application in $applications) {
     choco upgrade $application -y
     Write-host -f Green "`n $application upgrade completed"
 }
-
-
-
-## Check to see if Novabench is already installed by checking for the file "C:\Program Files\Novabench\Novabench.exe"
-
-Write-host -f Yellow "`n Novabench `n"
-if (Test-Path "C:\Program Files\Novabench\Novabench.exe") 
-{
-    Write-Host -f white "`n Novabench has already been installed."
-} 
-else 
-{
-    Write-Host -f green "`n Novabench has not been installed.  Installing it now"
-    
-    ##Download Novabench
-
-    Write-Host -f cyan "`n Downloading Novabench from the Novabench CDN"
-    Invoke-WebRequest -Uri 'https://cdn.novabench.com/novabench.msi' -OutFile 'C:\novabench.msi'
-
-    ## Install NovaBench silently
-
-    Write-Host -f cyan "`n Download complete.  Begin installation of Novabench"
-    Start-Process "msiexec.exe" -ArgumentList "/i", "C:\novabench.msi", "/qn" -Wait
-    Write-Host -f white "`n Installation of Novabench is complete."
-}
-
 
 write-host -F Cyan "`nEnd of application installation and upgrade script. `n"
 
