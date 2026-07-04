@@ -594,6 +594,62 @@ $Shortcut.Save()
 
 Write-host -f Yellow "`n End shortcut creation for OFFICE folder.  They were created in $ShortcutFolder"
 
+## Let's delete the extra shortcut links off of the Desktop
+
+# Directories to clean.  We need two directories becasue some links are located in the \Users\Public\Desktop folder becasue that allows all users on a computer to use the application
+$desktopPaths = @(
+    "$env:USERPROFILE\Desktop",
+    "C:\Users\Public\Desktop"
+)
+
+# We want to keep the Update Apps shortcut for users to use in the future to easily update their apps
+$keepShortcut = "Update Apps.cmd.lnk"
+
+foreach ($path in $desktopPaths) {
+
+    # Get all .lnk files, including hidden/system
+    $lnkFiles = Get-ChildItem -Path $path -Filter *.lnk -Force -ErrorAction SilentlyContinue
+
+    foreach ($file in $lnkFiles) {
+
+        # Skip folders (shouldn't match *.lnk, but extra safety)
+        if ($file.PSIsContainer) {
+            continue
+        }
+
+        # Skip the protected shortcut
+        if ($file.Name -ieq $keepShortcut) {
+            continue
+        }
+
+        # Skip the Recycle Bin (it is not a .lnk, but safety check)
+        if ($file.Name -match "Recycle Bin") {
+            continue
+        }
+
+        # Delete the file
+        try {
+            Remove-Item -Path $file.FullName -Force
+            Write-Host "Deleted: $($file.FullName)"
+        }
+        catch {
+            Write-Warning "Could not delete: $($file.FullName) — $_"
+        }
+    }
+}
+
+## Give instructions on how to shift folders onto the left side of the Desktop if you want to clean up Desktop icons.
+## Apparently these actions cannnot be performed programmatically
+Write-Host -F White "`n If you want to re-arrange the remaining icons, perform the following actions:"
+Write-Host -F Cyan "`n `t Step 1: Right click on Desktop-> View -> " -NoNewline
+Write-Host -F Green " check " -NoNewline
+Write-Host -F Cyan " Auto Arrange icons"
+Write-Host -F Cyan "`n `t Step 2: Right click on Desktop-> View -> " -NoNewline
+Write-Host -F Magenta " uncheck " -NoNewline
+Write-Host -F Cyan " Auto Arrange icons"
+Write-Host -F White "`n You should see the Desktop folders moved over to the far left side of the screen`n "
+Read-Host "`n `n Press Enter to continue"
+
 ## Let's set the execution policy back to restricted to prevent the user from running unsigned scripts in the future
 set-executionpolicy restricted -Scope Process -Force;
 Write-Host -F White "`n Windows Execution Policy has been set to $(Get-ExecutionPolicy)"
