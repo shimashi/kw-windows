@@ -164,10 +164,8 @@ else
 
 ## Define an array of the applications you want to install
 
-$applications=@("7zip", "adobereader", "Audacity", "firefox", "gimp", "handbrake", "inkscape", "krita", "libreoffice-fresh", "tux-paint", "vlc", "zoom")
+$applications=@("firefox","libreoffice-fresh", "zoom")
 
-## Removing "googlechrome",  from the above list of apps to install because it doesn't work with Chocolatey as of 6/28/2026
-## Removing  "AvastFreeAntivirus", from the above list of apps to install because it causes too many problems as of 7/4/2026
 
 ## Go through each application and install it with Chocolatey
 
@@ -289,71 +287,7 @@ if (Test-Path $GithubfilePath) {
 
 ## Create folders on the Desktop with shortcuts to specific applications.  The folder names organize the shortcuts by application category
 
-Write-host -f White "`n Create shortcuts to the apps installed in a folder called GRAPHICS"
 
-#Create an instance of the Windows Script Host Shell COM object, which allows you to create shortcut files
-
-$WshShell = New-Object -ComObject WScript.Shell
-
-# Hard code the shortcut folder
-$ShortcutFolder = "C:\Users\User\Desktop\GRAPHICS"
-
-# Ensure the shortcut folder exists
-if (-not (Test-Path $ShortcutFolder))
-{
-    Write-host -f green "`n GRAPHICS folder not found.  Creating it now"
-    New-Item -Path $ShortcutFolder -ItemType Directory | Out-Null 
-}
-else
-{
-    Write-host -f green "`n GRAPHICS folder already exists on the Desktop"
-}
-
-
-## Create shortcuts for all apps in the GRAPHICS category
-
-# Shortcut: GIMP
-$Shortcut = $WshShell.CreateShortcut("$ShortcutFolder\GIMP 3.0.4.lnk")
-$Shortcut.TargetPath = "C:\Users\User\AppData\Local\Programs\GIMP 3\bin\gimp-3.exe"
-$Shortcut.WorkingDirectory = "$env:USERPROFILE"
-$Shortcut.IconLocation = ",0"
-$Shortcut.Description = "GIMP 3.0.4"
-$Shortcut.WindowStyle = 1
-$Shortcut.Save()
-
-# Shortcut: Inkscape Drawing Program
-$Shortcut = $WshShell.CreateShortcut("$ShortcutFolder\Inkscape Drawing Program.lnk")
-$Shortcut.TargetPath = "C:\Program Files\Inkscape\bin\inkscape.exe"
-$Shortcut.WorkingDirectory = "C:\Program Files\Inkscape"
-$Shortcut.IconLocation = ",0"
-$Shortcut.WindowStyle = 1
-$Shortcut.Save()
-
-# Shortcut: Inkview Graphics Viewer
-$Shortcut = $WshShell.CreateShortcut("$ShortcutFolder\Inkview Graphics Viewer.lnk")
-$Shortcut.TargetPath = "C:\Program Files\Inkscape\bin\inkview.exe"
-$Shortcut.WorkingDirectory = "C:\Program Files\Inkscape"
-$Shortcut.IconLocation = ",0"
-$Shortcut.WindowStyle = 1
-$Shortcut.Save()
-
-# Shortcut: Krita Painting Program
-$Shortcut = $WshShell.CreateShortcut("$ShortcutFolder\Krita Painting Program.lnk")
-$Shortcut.TargetPath = "C:\Program Files\Krita (x64)\bin\krita.exe"
-$Shortcut.WorkingDirectory = "C:\Program Files\Krita (x64)"
-$Shortcut.IconLocation = "C:\Program Files\Krita (x64)\shellex\krita.ico,0"
-$Shortcut.WindowStyle = 1
-$Shortcut.Save()
-
-# Shortcut: Tux Paint (for Kids!)
-$Shortcut = $WshShell.CreateShortcut("$ShortcutFolder\Tux Paint (for Kids!).lnk")
-$Shortcut.TargetPath = "C:\Program Files\TuxPaint\tuxpaint.exe"
-$Shortcut.WorkingDirectory = "C:\Program Files\TuxPaint"
-$Shortcut.IconLocation = ",0"
-$Shortcut.WindowStyle = 1
-$Shortcut.Save()
-
-Write-host -f Yellow "`n End shortcut creation for GRAPHICS folder.  They were created in $ShortcutFolder"
 
 ## Create shortcuts for all apps in the INTERNET category
 
@@ -383,16 +317,6 @@ $Shortcut.IconLocation = ",0"
 $Shortcut.WindowStyle = 1
 $Shortcut.Save()
 
-## Removing the Google Chrome shortcut because Chocolatey can't seem to auto-install it as of 6/28/2026
-# Shortcut: Google Chrome
-# $Shortcut = $WshShell.CreateShortcut("$ShortcutFolder\Google Chrome.lnk")
-# $Shortcut.TargetPath = "C:\Program Files\Google\Chrome\Application\chrome.exe"
-# $Shortcut.WorkingDirectory = "C:\Program Files\Google\Chrome\Application"
-# $Shortcut.IconLocation = "C:\Program Files\Google\Chrome\Application\chrome.exe,0"
-# $Shortcut.Description = "Access the Internet"
-# $Shortcut.WindowStyle = 1
-# $Shortcut.Save()
-
 # Shortcut: Microsoft Edge
 $Shortcut = $WshShell.CreateShortcut("$ShortcutFolder\Microsoft Edge.lnk")
 $Shortcut.TargetPath = "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
@@ -407,59 +331,6 @@ $Shortcut = $WshShell.CreateShortcut("$ShortcutFolder\Zoom.lnk")
 $Shortcut.TargetPath = "C:\Program Files\Zoom\bin\Zoom.exe"
 $Shortcut.IconLocation = "C:\Program Files\Zoom\bin\Zoom.exe,0"
 $Shortcut.Description = "Zoom"
-$Shortcut.WindowStyle = 1
-$Shortcut.Save()
-
-Write-host -f Yellow "`n End shortcut creation for INTERNET folder.  They were created in $ShortcutFolder"
-
-## Create shortcuts for all apps in the MEDIA category
-
-Write-host -f White "`n Create shortcuts to the apps installed in a folder called MEDIA"
-
-$WshShell = New-Object -ComObject WScript.Shell
-
-# Hard code the shortcut folder
-$ShortcutFolder = "C:\Users\User\Desktop\MEDIA"
-if (-not (Test-Path $ShortcutFolder))
-{
-    Write-host -f green "`n MEDIA folder not found.  Creating it now"
-    New-Item -Path $ShortcutFolder -ItemType Directory | Out-Null
-}
-else
-{
-    Write-host -f green "`n MEDIA folder already exists on the Desktop"
-}
-
-
-# Shortcut: Audacity Audio File Editor
-$Shortcut = $WshShell.CreateShortcut("$ShortcutFolder\Audacity Audio File Editor.lnk")
-$Shortcut.TargetPath = "C:\Program Files\Audacity\Audacity.exe"
-$Shortcut.WorkingDirectory = "C:\Program Files\Audacity"
-$Shortcut.IconLocation = ",0"
-$Shortcut.WindowStyle = 1
-$Shortcut.Save()
-
-# Shortcut: HandBrake Video Converter
-$Shortcut = $WshShell.CreateShortcut("$ShortcutFolder\HandBrake Video Converter.lnk")
-$Shortcut.TargetPath = "C:\Program Files\HandBrake\HandBrake.exe"
-$Shortcut.WorkingDirectory = "C:\Program Files\HandBrake"
-$Shortcut.IconLocation = ",0"
-$Shortcut.WindowStyle = 1
-$Shortcut.Save()
-
-# Shortcut: Movies & TV
-$Shortcut = $WshShell.CreateShortcut("$ShortcutFolder\Movies & TV.lnk")
-$Shortcut.TargetPath = ""
-$Shortcut.IconLocation = "%SystemRoot%\System32\SHELL32.dll,115"
-$Shortcut.WindowStyle = 1
-$Shortcut.Save()
-
-# Shortcut: Windows Media Player
-$Shortcut = $WshShell.CreateShortcut("$ShortcutFolder\Windows Media Player.lnk")
-$Shortcut.TargetPath = "C:\Program Files (x86)\Windows Media Player\wmplayer.exe"
-$Shortcut.Arguments = "/prefetch:1"
-$Shortcut.WorkingDirectory = "%ProgramFiles(x86)%\Windows Media Player"
-$Shortcut.IconLocation = "%ProgramFiles(x86)%\Windows Media Player\wmplayer.exe,0"
 $Shortcut.WindowStyle = 1
 $Shortcut.Save()
 
@@ -484,20 +355,6 @@ else
     Write-host -f green "`n OFFICE folder already exists on the Desktop"
 }
 
-
-# Shortcut: 7-Zip File Manager
-$Shortcut = $WshShell.CreateShortcut("$ShortcutFolder\7-Zip File Manager.lnk")
-$Shortcut.TargetPath = "C:\Program Files\7-Zip\7zFM.exe"
-$Shortcut.IconLocation = ",0"
-$Shortcut.WindowStyle = 1
-$Shortcut.Save()
-
-# Shortcut: Adobe Acrobat
-$Shortcut = $WshShell.CreateShortcut("$ShortcutFolder\Adobe Acrobat.lnk")
-$Shortcut.TargetPath = "C:\Program Files\Adobe\Acrobat DC\Acrobat\Acrobat.exe"
-$Shortcut.IconLocation = "C:\Windows\Installer\{AC76BA86-1033-FF00-7760-BC15014EA700}\_SC_Acrobat.ico,0"
-$Shortcut.WindowStyle = 1
-$Shortcut.Save()
 
 # Shortcut: LibreOffice Base (Database program like Microsoft Access)
 $Shortcut = $WshShell.CreateShortcut("$ShortcutFolder\LibreOffice Base (Database program like Microsoft Access).lnk")
