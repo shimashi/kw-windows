@@ -1,7 +1,7 @@
-﻿## This script installs a bunch of applications using Chocolatey.
+﻿## This script updates a bunch of applications using Chocolatey.
 ## If the applications are already installed, the script will update the applications to the latest version
 
-## The one application that couldn't be installed using Chocolately is Novabench.  This script only installs Novabench.  It does not update Novabench.
+## The one application that couldn't be installed using Chocolately is Novabench. It does not update Novabench.
 
 clear
 
@@ -58,9 +58,9 @@ Write-host -f Green "`n Chocolately upgrade completed"
 ## Upgrade all applications.  BTW is the application is missing, this will also re-install the application
 
 
-## Define an array of the applications you want to install
+## Define an array of the applications you want to install.  Per the 9/20/26 refurbishers meeting, only the following apps are necessary
 
-$applications=@("7zip", "adobereader", "Audacity", "firefox", "gimp", "handbrake", "inkscape", "krita", "libreoffice-fresh", "tux-paint", "vlc", "zoom")
+$applications=@("firefox", "libreoffice-fresh", "zoom")
 
 
 
