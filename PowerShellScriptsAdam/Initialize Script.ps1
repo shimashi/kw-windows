@@ -200,14 +200,26 @@ else
     Write-Host -f white "`n Installation of Novabench is complete."
 }
 
-## Now let's change the battery settings to those listed in the KindWorks.pow file, and make sure the command executed sucesssfully
-powercfg /import "C:\KindWorksScripts\KindWorks.pow"
+# Place a shortcut on the Desktop to the Edit Power Plan Settings tab of Control Panel
 
-if ($LASTEXITCODE -eq 0) {
-    Write-Host -F white "`n`n The power scheme was configured successfully."
-} else {
-    Write-Host -f magenta "'n`n The power scheme was not configured successfully. Exit code: $LASTEXITCODE"
-}
+# Get the current user's Desktop path
+$DesktopPath = [Environment]::GetFolderPath('Desktop')
+$ShortcutPath = Join-Path $DesktopPath "Edit Power Plan.lnk"
+
+# Create the WScript.Shell COM object to build the shortcut
+$WScriptShell = New-Object -ComObject WScript.Shell
+$Shortcut = $WScriptShell.CreateShortcut($ShortcutPath)
+
+# Configure the shortcut properties to target the Edit Plan Settings page
+$Shortcut.TargetPath = "control.exe"
+$Shortcut.Arguments = "/name Microsoft.PowerOptions /page pagePlanSettings"
+$Shortcut.Description = "Open Edit Plan Settings Control Panel"
+$Shortcut.IconLocation = "powercpl.dll,0"
+
+# Save the shortcut file to the desktop
+$Shortcut.Save()
+
+Write-Host -F white "Edit Power Plan shortcut created at: $ShortcutPath" -ForegroundColor Green
 
 ## Now change the file view settings to show file extensions
 try {
