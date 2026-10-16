@@ -441,9 +441,12 @@ $Shortcut.WindowStyle = 1
 $Shortcut.Save()
 
 # Shortcut: Sticky Notes
+$WshShell = New-Object -ComObject WScript.Shell
+$ShortcutFolder = [Environment]::GetFolderPath('Desktop')
 $Shortcut = $WshShell.CreateShortcut("$ShortcutFolder\Sticky Notes.lnk")
-$Shortcut.TargetPath = ""
-$Shortcut.IconLocation = ",0"
+$Shortcut.TargetPath = "explorer.exe"
+$Shortcut.Arguments = "shell:AppsFolder\Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe!App"
+$Shortcut.Description = "Sticky Notes"
 $Shortcut.WindowStyle = 1
 $Shortcut.Save()
 
