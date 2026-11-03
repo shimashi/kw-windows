@@ -10,7 +10,7 @@ clear
 ##  This is necessary so the PowerShell window will fit 
 Add-Type -AssemblyName System.Windows.Forms
 $screen = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds
-$width = 800
+$width = 1000
 $height = 600
 $left = ($screen.Width - $width) / 2
 $top = ($screen.Height - $height) / 2
@@ -277,23 +277,7 @@ else
 }
 
 
-## Erase the original downloaded GitHub files off the desktop if they exist
 
-$GithubfolderPath = "C:\Users\User\Desktop\PowerShellScriptsAdam"
-$GithubfilePath   = "C:\Users\User\Desktop\InstallScripts.zip"
-
-
-# Remove folder if it exists
-if (Test-Path $GithubfolderPath) {
-    Write-Host -ForegroundColor White "`n Deleting the PowerShellScriptsAdam folder off the Desktop"
-    Remove-Item $GithubfolderPath -Recurse -Force
-}
-
-# Remove file if it exists
-if (Test-Path $GithubfilePath) {
-    Write-Host -ForegroundColor White "`n Deleting the InstallScripts.zip file off the Desktop"
-    Remove-Item $GithubfilePath -Force
-}
 
 
 
@@ -461,8 +445,9 @@ $desktopPaths = @(
     "C:\Users\Public\Desktop"
 )
 
-# We want to keep the Update Apps shortcut for users to use in the future to easily update their apps
+# We want to keep the Update Apps and Edit Power Plan shortcuts for users to use in the future to easily update their apps
 $keepShortcut = "Update Apps.cmd.lnk"
+$keepshortcut2 = "Edit Power Plan.lnk"
 
 foreach ($path in $desktopPaths) {
 
@@ -476,8 +461,8 @@ foreach ($path in $desktopPaths) {
             continue
         }
 
-        # Skip the protected shortcut
-        if ($file.Name -ieq $keepShortcut) {
+        # Skip the protected shortcuts
+        if ($file.Name -ieq $keepShortcut -or $file.Name -ieq $keepShortcut2) {
             continue
         }
 
@@ -496,6 +481,25 @@ foreach ($path in $desktopPaths) {
         }
     }
 }
+
+## Erase the original downloaded GitHub files off the desktop if they exist
+
+$GithubfolderPath = "C:\Users\User\Desktop\PowerShellScriptsAdam"
+$GithubfilePath   = "C:\Users\User\Desktop\InstallScripts.zip"
+
+
+# Remove folder if it exists
+if (Test-Path $GithubfolderPath) {
+    Write-Host -ForegroundColor White "`n Deleting the PowerShellScriptsAdam folder off the Desktop"
+    Remove-Item $GithubfolderPath -Recurse -Force
+}
+
+# Remove file if it exists
+if (Test-Path $GithubfilePath) {
+    Write-Host -ForegroundColor White "`n Deleting the InstallScripts.zip file off the Desktop"
+    Remove-Item $GithubfilePath -Force
+}
+
 
 ## Give instructions on how to shift folders onto the left side of the Desktop if you want to clean up Desktop icons.
 ## Apparently these actions cannnot be performed programmatically
