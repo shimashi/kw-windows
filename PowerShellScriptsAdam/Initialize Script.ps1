@@ -219,7 +219,7 @@ $Shortcut.IconLocation = "powercpl.dll,0"
 # Save the shortcut file to the desktop
 $Shortcut.Save()
 
-Write-Host -F white "Edit Power Plan shortcut created at: $ShortcutPath" -ForegroundColor Green
+Write-Host -F white "Edit Power Plan shortcut created at: $ShortcutPath"
 
 ## Now change the file view settings to show file extensions
 try {
