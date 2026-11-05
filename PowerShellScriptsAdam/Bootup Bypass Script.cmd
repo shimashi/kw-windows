@@ -38,6 +38,27 @@ Echo.
 
 powershell -Command "Start-Process PowerShell -ArgumentList '-ExecutionPolicy','Bypass','-File','\"C:\KindWorksScripts\Initialize Script.ps1"' -Verb RunAs"
 
+
+@echo off
+REM Erase the original downloaded GitHub files off the desktop if they exist
+
+set "GithubfolderPath=C:\Users\User\Desktop\PowerShellScriptsAdam"
+set "GithubfilePath=C:\Users\User\Desktop\InstallScripts.zip"
+
+REM Remove folder if it exists
+if exist "%GithubfolderPath%" (
+    echo.
+    echo Deleting the PowerShellScriptsAdam folder off the Desktop
+    rd /s /q "%GithubfolderPath%"
+)
+
+REM Remove file if it exists
+if exist "%GithubfilePath%" (
+    echo.
+    echo Deleting the InstallScripts.zip file off the Desktop
+    del /f /q "%GithubfilePath%"
+)
+
 @echo off
 Echo The Bootup Bypass Script is complete
 Echo.
