@@ -18,6 +18,29 @@ try
  }
 
 
+##  Center the powershell window in the middle of the screen.
+##  This is necessary so the PowerShell window will fit 
+Add-Type -AssemblyName System.Windows.Forms
+$screen = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds
+$width = 1000
+$height = 600
+$left = ($screen.Width - $width) / 2
+$top = ($screen.Height - $height) / 2
+
+$hwnd = Get-Process -Id $PID | ForEach-Object { $_.MainWindowHandle }
+$null = Add-Type @"
+using System;
+using System.Runtime.InteropServices;
+public class Win32 {
+    [DllImport("user32.dll")]
+    public static extern bool MoveWindow(IntPtr hWnd, int X, int Y, int nWidth, int nHeight, bool bRepaint);
+}
+"@
+[Win32]::MoveWindow($hwnd, $left, $top, $width, $height, $true)
+
+clear
+
+
 try
 {
     ## This needs admin rights to run"
