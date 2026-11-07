@@ -38,7 +38,6 @@ public class Win32 {
 "@
 [Win32]::MoveWindow($hwnd, $left, $top, $width, $height, $true)
 
-clear
 
 
 try
