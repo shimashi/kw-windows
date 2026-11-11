@@ -6,7 +6,7 @@
 
  - Paste the following command into a Powershell terminal to download the latest copy of Kindworks installation scripts to your desktop:
 
-> curl.exe -L “https://github.com/shimashi/kw-windows/archive/refs/heads/main.zip” -o “$env:USERPROFILE\Desktop\InstallScripts.zip”
+> curl.exe -L "https://github.com/shimashi/kw-windows/archive/refs/heads/main.zip" -o "$env:USERPROFILE\Desktop\InstallScripts.zip"
 
 - Then follow these instructions:
 
