@@ -500,6 +500,8 @@ if (Test-Path $GithubfilePath) {
     Remove-Item $GithubfilePath -Force
 }
 
+# Save a copy of the Windows license key in the C:\KindworksScripts folder
+(Get-CimInstance -ClassName SoftwareLicensingService).OA3xOriginalProductKey > C:\KindworksScripts\WindowsLicenseKey.txt
 
 ## Give instructions on how to shift folders onto the left side of the Desktop if you want to clean up Desktop icons.
 ## Apparently these actions cannnot be performed programmatically
