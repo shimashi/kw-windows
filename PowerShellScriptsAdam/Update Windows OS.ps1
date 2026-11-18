@@ -88,15 +88,6 @@ catch
 
 
 
-
-
-
-
-
-
-
-
-
 try {
             Write-host -f White "`n`n Import the PSWindowsUpdate module"
             Import-Module PSWindowsUpdate -Force
@@ -106,7 +97,7 @@ try {
 
 catch 
     {
-            Write-Warning "`n`n The PSWindowsUpdate modeule was not imported propery!"
+            Write-Warning "`n`n The PSWindowsUpdate module was not imported properly!"
     }
 
 
